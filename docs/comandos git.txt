@@ -1,0 +1,14 @@
+Si el repositorio existe
+    > git clone <direccion>
+Si es un repositorio nuevo
+    > git init
+
+Crear u repositorio remoto (GITHUB)
+
+git remote add origin https://github.com/cchura94/back_laravel_vue_proyecto.git
+
+--------------------------------------------
+
+git add .
+git commmit -m "mensaje"
+git push origin master
