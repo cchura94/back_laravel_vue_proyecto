@@ -12,7 +12,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // endpont : Auth (login , perfil, logout, registro)
 Route::group(["prefix" => "v1/auth"], function(){
-
+    // /api/v1/auth
     Route::post("login", [AuthController::class, "ingresar"]);
     Route::post("registro", [AuthController::class, "registrar"]);
 
