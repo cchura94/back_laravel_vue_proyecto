@@ -1,0 +1,36 @@
+GET http://127.0.0.1:8000/api/categoria
+Accept: application/json
+Authorization: Bearer 27|c0Gah2ngRg5wQMAoDO7ulE6nkuV028Au8bsj0f8r
+
+### guardar
+
+POST http://127.0.0.1:8000/api/categoria
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 27|c0Gah2ngRg5wQMAoDO7ulE6nkuV028Au8bsj0f8r
+
+{
+    "nombre": "MUEBLES",
+    "detalle": "Muebles de madera"
+}
+
+### Modifiar
+PUT http://127.0.0.1:8000/api/categoria/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 27|c0Gah2ngRg5wQMAoDO7ulE6nkuV028Au8bsj0f8r
+
+{
+    "nombre": "ROPA MODIFICADA",
+    "detalle": "Ropa para todos modificado"
+}
+
+### mostrar
+GET http://127.0.0.1:8000/api/categoria/1
+Accept: application/json
+Authorization: Bearer 27|c0Gah2ngRg5wQMAoDO7ulE6nkuV028Au8bsj0f8r
+
+### eliminar
+DELETE http://127.0.0.1:8000/api/categoria/1
+Accept: application/json
+Authorization: Bearer 27|c0Gah2ngRg5wQMAoDO7ulE6nkuV028Au8bsj0f8r
