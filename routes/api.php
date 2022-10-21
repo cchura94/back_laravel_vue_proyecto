@@ -39,3 +39,7 @@ Route::group(["middleware" => "auth:sanctum"], function(){
     Route::apiResource("cliente", ClienteController::class);
 
 });
+
+Route::get("/no-permitido", function(){
+    return response()->json(["mensaje" => "No Authorizado"]);
+})->name('login');
