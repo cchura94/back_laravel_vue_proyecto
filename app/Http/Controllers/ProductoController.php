@@ -12,10 +12,11 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $nro_filas = $request->rows?$request->rows:10;
         // listado con paginación
-        $productos = Producto::with('categoria')->orderBy('id', 'desc')->paginate(5);
+        $productos = Producto::with('categoria')->orderBy('id', 'desc')->paginate($nro_filas);
         return response()->json($productos, 200);
     }
 
