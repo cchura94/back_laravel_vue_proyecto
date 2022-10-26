@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
@@ -24,7 +27,41 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validar
+        DB::beginTransaction();
+        try {
+
+            // crear pedido
+            $pedido = new Pedido();
+            $pedido->fecha_pedido = Carbon::now();
+            $pedido->cliente_id = $request->cliente_id;
+            $pedido->save();
+
+            // asignacion de productos al pedido
+            /*
+            [
+                {producto_id: 1, cantidad: 1},
+                {producto_id: 40, cantidad: 2},
+                {producto_id: 6, cantidad: 1},
+            ]
+            */
+            foreach ($request->productos as $producto) {
+                $pedido->productos()->attach($producto["producto_id"], ["cantidad" => $producto["cantidad"]]);
+            }
+            
+            // actualizar el estado del pedido
+            $pedido->estado = 2;
+            $pedido->update();
+
+            DB::commit();
+            return response()->json(["mensaje" => "Pedido Registrado"], 201);
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            // something went wrong
+            return response()->json(["mensaje" => "Ocurrio un problema al registrar el pedido", "error" => $e], 422);
+        }
+        
     }
 
     /**
