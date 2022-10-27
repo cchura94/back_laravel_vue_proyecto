@@ -16,7 +16,9 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pedidos = Pedido::with('productos', 'cliente')->paginate(15);
+
+        return response()->json($pedidos, 200);
     }
 
     /**
