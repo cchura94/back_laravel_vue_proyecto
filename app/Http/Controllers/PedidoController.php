@@ -28,6 +28,10 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         // validar
+
+        $request->validate([
+            "cliente_id" => "required"
+        ]);
         DB::beginTransaction();
         try {
 
