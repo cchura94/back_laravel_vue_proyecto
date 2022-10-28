@@ -33,6 +33,8 @@ Route::group(["prefix" => "v1/auth"], function(){
 Route::group(["middleware" => "auth:sanctum"], function(){
 
     Route::get('/cliente/buscar', [ClienteController::class, "buscarCliente"]);
+    // actualizar imagen
+    Route::post("/producto/{id}/subir-imagen", [ProductoController::class, "subirImagen"]);
     
     Route::apiResource("usuario", UsuarioController::class);
     Route::apiResource("categoria", CategoriaController::class);
