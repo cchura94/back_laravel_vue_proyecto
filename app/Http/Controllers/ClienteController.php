@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -14,6 +15,14 @@ class ClienteController extends Controller
     public function index()
     {
         //
+    }
+
+    public function buscarCliente(Request $request)
+    {
+        $buscar = $request->q;
+        $cliente = Cliente::where("ci_nit", "like", "%".$buscar."%")->first();
+        
+        return response()->json($cliente, 200);
     }
 
     /**

@@ -31,6 +31,8 @@ Route::group(["prefix" => "v1/auth"], function(){
 
 // otras rutas
 Route::group(["middleware" => "auth:sanctum"], function(){
+
+    Route::get('/cliente/buscar', [ClienteController::class, "buscarCliente"]);
     
     Route::apiResource("usuario", UsuarioController::class);
     Route::apiResource("categoria", CategoriaController::class);
